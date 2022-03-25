@@ -1,14 +1,14 @@
 {
-  "name": "blog-1",
+  "name": "Blog",
   "version": "1.0.0",
-  "description": "",
+  "description": "A modern blog that uses MongoDB.",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["blog", "mongoose"],
+  "author": "William Faircloth",
+  "license": "Apache-2.0",
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.0",

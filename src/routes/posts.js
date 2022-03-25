@@ -31,7 +31,7 @@ const checkIfAuth = (req) => {
 
 app.use("/autho/", (req, res, next) => {
   const autho = checkIfAuth(req);
-  if (!autho) return res.status(400).redirect("/login");
+  if (!autho) return res.status(403).redirect("/login");
   next();
 });
 
