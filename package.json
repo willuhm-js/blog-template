@@ -1,7 +1,7 @@
 {
   "name": "Blog",
   "version": "1.0.0",
-  "description": "A modern blog that uses MongoDB.",
+  "description": "A modern, light-theme blog that uses MongoDB and Bootstrap styling.",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js"
