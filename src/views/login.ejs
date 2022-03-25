@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title><%= blogTitle %> - Create Post</title>
+  </head>
+    <body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/posts">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Search</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container mt-4 mb-5">
+    <h1 class="mb-4"><%= blogTitle %> - Login</h1>
+    <% if( typeof(error) !== "undefined") { %>
+      <p><%= error %></p>
+    <% } %>
+    <form method="POST">
+      <div class="mb-2">
+        <input class="form-control" type="text" placeholder="Username" required name="username" autocomplete="off"/>
+      </div>
+      <div class="mb-2">
+        <input class="form-control" type="password" placeholder="Password" required name="password" autocomplete="off"></input>
+      </div>
+      <input class="btn btn-primary w-100" type="submit" value="Post"/>
+    </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script>
+      const fileInput = document.getElementById("fileInput");
+      window.addEventListener('paste', e => {
+        fileInput.files = e.clipboardData.files;
+      });
+    </script>
+  </body>
+</html>
