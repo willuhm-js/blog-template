@@ -1,5 +1,5 @@
 # Blog
-A modern blog that uses MongoDB.
+A modern, light-theme blog that uses MongoDB and Bootstrap styling.
 
 ## Get Started
 ```bash
