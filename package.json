@@ -8,7 +8,7 @@
   },
   "keywords": ["blog", "mongoose"],
   "author": "William Faircloth",
-  "license": "Apache-2.0",
+  "license": "Unlicense",
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.0",
