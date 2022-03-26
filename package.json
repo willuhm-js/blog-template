@@ -6,7 +6,10 @@
   "scripts": {
     "start": "node src/index.js"
   },
-  "keywords": ["blog", "mongoose"],
+  "keywords": [
+    "blog",
+    "mongoose"
+  ],
   "author": "William Faircloth",
   "license": "Unlicense",
   "dependencies": {

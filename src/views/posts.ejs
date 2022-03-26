@@ -39,7 +39,7 @@
       <a href="/posts/<%= post.id %>" class="text-reset text-decoration-none">
         <div class="card col-12 col-lg-7 d-inline-block">
           <% if (post.thumbnail) { %>
-          <img src="/thumbnails/<%= post.thumbnail %>" class="card-img-top" alt="Image thumbnail" />
+          <img src="<%= post.thumbnail %>" class="card-img-top" alt="Image thumbnail" />
           <% } %>
           <div class="card-body">
             <h5 class="card-title"><%- post.title %></h5>
