@@ -13,4 +13,4 @@ npm install && npm start
 * Do not include an image in the first paragraph, use the thumbnail feature instead; thumbnails are rendered directly after the post title and tags.
 
 ## License
-**Blog** is licensed under the [Unlicense](https://github.com/willuhm-js/Blog/blob/main/LICENSE). Feel free to do whatever with this, it is a template.
+**Blog** is licensed under the [Unlicense License](https://github.com/willuhm-js/Blog/blob/main/LICENSE). Feel free to do whatever with this, it is a template.
