@@ -3,7 +3,8 @@ A modern, light-theme blog that uses MongoDB and Bootstrap styling.
 
 ## Get Started
 ```bash
-git clone https://github.com/willuhm-js/Blog.git
+npx degit https://github.com/willuhm-js/Blog.git Blog
+cd Blog
 # Edit src/config.js
 npm install && npm start
 ```
