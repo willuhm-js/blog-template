@@ -3,8 +3,6 @@ const { Router } = require("express");
 const jwt = require("jsonwebtoken");
 const { blogTitle, username, password, jwtSecret } = require("../config.js");
 const Post = require("../util/mongoose/Post");
-const fs = require("fs-extra");
-const join = (...p) => require("path").resolve(__dirname, ...p);
 
 const upload = require("multer")();
 
