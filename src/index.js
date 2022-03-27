@@ -5,11 +5,11 @@ const express = require("express");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
-const join = (...p) => require("path").resolve(__dirname, ...p);
-
-const app = express();
-
+const path = require("path");
 const { mongoCred } = require("./config");
+
+const join = (...p) => path.resolve(__dirname, ...p);
+const app = express();
 
 // database
 mongoose
