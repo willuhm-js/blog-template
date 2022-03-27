@@ -7,7 +7,7 @@ import ejs from "ejs";
 import mongoose from "mongoose"
 import cookieParser from "cookie-parser"
 import path from "path"
-import { mongoCred } from "./config";
+import { mongoCred, port } from "./config";
 import posts from "./routes/posts"
 import login from "./routes/login"
 import logger from "./util/logger";
@@ -19,7 +19,7 @@ const app = express();
 mongoose
   .connect(mongoCred)
   .then(() => {
-    app.listen(process.env.PORT || 8082, () => {
+    app.listen(port, () => {
       logger.info("App Started");
     });
   });

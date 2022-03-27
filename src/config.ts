@@ -28,3 +28,5 @@ export const blogTitle = "My Blog";
 export const username = "admin";
 
 export const password = "admin";
+
+export const port = process.env.PORT || 8082;
