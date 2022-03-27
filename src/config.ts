@@ -5,15 +5,13 @@ dotenv.config();
 
 export const jwtSecret = process.env.JWT_SECRET || (() => {
   // No JWT_SECRET token found. Using crypto, generate a secure string.
-  console.log("You have not set the JWT_SECRET environment variable.");
-  if (!fs.existsSync(".env")) {
-    console.log("No .env file detected -- Generating a secure JWT_SECRET token...");
-    const randomBits = crypto.randomBytes(32).toString("hex");
-    fs.writeFileSync(".env", `JWT_SECRET=${crypto.randomBytes(32).toString("hex")}`);
-    return randomBits
-  }
+  console.log("You have not set the JWT_SECRET environment variable. Generating a secure one...");
+  const randomBits = crypto.randomBytes(32).toString("hex");
 
-  process.exit(1);
+  const preferredFsFunction = fs.existsSync(".env") ? fs.appendFileSync : fs.writeFileSync;
+  
+  preferredFsFunction(".env", `JWT_SECRET=${randomBits}`);
+  return randomBits
 })();
 
 export const mongoCred = process.env.MONGO || (() => {
