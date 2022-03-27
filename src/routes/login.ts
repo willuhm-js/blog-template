@@ -1,8 +1,8 @@
-require("dotenv").config();
-const { Router } = require("express");
-const jwt = require("jsonwebtoken");
-const { username, password, blogTitle, jwtSecret } = require("../config.js");
+import { Router } from "express";
+import jwt from "jsonwebtoken";
+import { username, password, blogTitle, jwtSecret } from "../config";
 
+require("dotenv").config();
 const app = Router();
 module.exports = app;
 

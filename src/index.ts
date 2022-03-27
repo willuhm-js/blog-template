@@ -1,22 +1,20 @@
 /* "If it works, it works." */
 
-require("dotenv").config();
-const express = require("express");
-const ejs = require("ejs");
-const mongoose = require("mongoose");
-const cookieParser = require("cookie-parser");
-const path = require("path");
-const { mongoCred } = require("./config");
+import dotenv from "dotenv";
+dotenv.config();
+import express from "express";
+import ejs from "ejs";
+import mongoose from "mongoose"
+import cookieParser from "cookie-parser"
+import path from "path"
+import { mongoCred } from "./config";
 
-const join = (...p) => path.resolve(__dirname, ...p);
+const join = (...p: string[]) => path.resolve(__dirname, ...p);
 const app = express();
 
 // database
 mongoose
-  .connect(mongoCred, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(mongoCred)
   .then(() => {
     app.listen(process.env.PORT || 8082, () => {
       console.log("App Started");
