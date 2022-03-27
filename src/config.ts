@@ -8,9 +8,12 @@ export const jwtSecret = process.env.JWT_SECRET || (() => {
   console.log("You have not set the JWT_SECRET environment variable.");
   if (!fs.existsSync(".env")) {
     console.log("No .env file detected -- Generating a secure JWT_SECRET token...");
+    const randomBits = crypto.randomBytes(32).toString("hex");
     fs.writeFileSync(".env", `JWT_SECRET=${crypto.randomBytes(32).toString("hex")}`);
+    return randomBits
   }
-  process.exit(1)
+
+  process.exit(1);
 })();
 
 export const mongoCred = process.env.MONGO || (() => {
