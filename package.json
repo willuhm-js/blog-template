@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "A modern, light-theme blog that uses MongoDB and Bootstrap styling.",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
-    "start": "tsc && node dist/index.js"
+    "start": "tsc && node --experimental-specifier-resolution=node dist/index.js"
   },
   "keywords": [
     "blog",

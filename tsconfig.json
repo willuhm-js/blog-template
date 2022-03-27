@@ -2,8 +2,10 @@
   "compilerOptions": {
     "target": "esnext",
     "lib": ["esnext"],
-    "module": "commonjs",
+    "module": "esnext",
     "strict": true,
+    "allowJs": true,
+    "baseUrl": "./src",
     "esModuleInterop": true,
     "moduleResolution": "node",
     "skipLibCheck": true,
