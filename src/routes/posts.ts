@@ -1,10 +1,11 @@
-require("dotenv").config();
+import dotenv from "dotenv";
 import { Router } from "express";
 import jwt from "jsonwebtoken";
-const { blogTitle, username, password, jwtSecret } = require("../config.js");
+import { blogTitle, username, password, jwtSecret } from "../config";
 import Post from "../util/mongoose/Post";
-
 import multer from "multer"
+
+dotenv.config();
 
 const upload = multer();
 
