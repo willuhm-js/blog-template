@@ -6,18 +6,7 @@ const Post = require("../util/mongoose/Post");
 const fs = require("fs-extra");
 const join = (...p) => require("path").resolve(__dirname, ...p);
 
-const multer = require("multer");
-const storage = multer.diskStorage({
-  destination: async function (req, file, cb) {
-    await fs.ensureDir(join("..", "public", "thumbnails"));
-    cb(null, join("..", "public", "thumbnails"));
-  },
-  filename: function (req, file, cb) {
-    const uniqueName = Date.now() + Math.round(Math.random() * 1e9);
-    cb(null, `${uniqueName}.${file.mimetype.split("/")[1]}`);
-  },
-});
-const upload = multer({ storage });
+const upload = require("multer")();
 
 const app = Router();
 module.exports = app;
@@ -60,12 +49,9 @@ app.post("/autho/create", upload.single("thumbnail"), async (req, res) => {
     title: req.body.title,
     body: req.body.body,
     id: Date.now(),
+    thumbnail: `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`
   });
   if (req.body.tags) newPost.tags = req.body.tags.split(",");
-  if (req.file) {
-    newPost.thumbnail = req.file.filename;
-    newPost.id = req.file.filename.split(".")[0];
-  }
   await newPost.save();
   return res.redirect(`/posts/${newPost.id}`);
 });
@@ -74,7 +60,6 @@ app.post("/autho/delete", async (req, res) => {
   if (!req.body.id) return res.status(400).redirect("/error/400");
   try {
     await Post.deleteOne({ id: req.body.id });
-    if (req.body.thumbnail) fs.unlinkSync(join("..", "public", "thumbnails", req.body.thumbnail));
     return res.redirect("/posts");
   } catch {
     res.status(500).redirect("/error/500");
