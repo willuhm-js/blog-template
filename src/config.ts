@@ -1,16 +1,19 @@
 import crypto from "crypto";
-import fs from "fs";
+import fs from "fs/promises";
+import { constants } from "fs";
 import dotenv from "dotenv";
 dotenv.config();
 
-export const jwtSecret = process.env.JWT_SECRET || (() => {
+const exists = (path: string) => fs.access(path, constants.R_OK | constants.W_OK).then(() => true).catch(() => false);
+
+export const jwtSecret = process.env.JWT_SECRET || (async () => {
   // No JWT_SECRET token found. Using crypto, generate a secure string.
   console.log("You have not set the JWT_SECRET environment variable. Generating a secure one...");
   const randomBits = crypto.randomBytes(32).toString("hex");
 
-  const preferredFsFunction = fs.existsSync(".env") ? fs.appendFileSync : fs.writeFileSync;
-  
-  preferredFsFunction(".env", `JWT_SECRET=${randomBits}`);
+  const preferredFsFunction = await exists(".env") ? fs.appendFile : fs.writeFile;
+
+  await preferredFsFunction(".env", `JWT_SECRET=${randomBits}`);
   return randomBits
 })();
 

@@ -12,9 +12,9 @@ const upload = multer();
 const app = Router();
 export default app;
 
-const checkIfAuth = (req: Express.Request & { cookies: any }) => {
+const checkIfAuth = async (req: Express.Request & { cookies: any }) => {
   if (!req.cookies || !req.cookies.token) return false;
-  const creds = jwt.verify(req.cookies.token, jwtSecret);
+  const creds = jwt.verify(req.cookies.token, await jwtSecret);
   if ((creds as any).username !== username || (creds as any).password !== password) return false;
   return true;
 };

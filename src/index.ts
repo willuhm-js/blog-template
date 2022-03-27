@@ -8,6 +8,8 @@ import mongoose from "mongoose"
 import cookieParser from "cookie-parser"
 import path from "path"
 import { mongoCred } from "./config";
+import posts from "./routes/posts"
+import login from "./routes/login"
 
 const join = (...p: string[]) => path.resolve(__dirname, ...p);
 const app = express();
@@ -34,8 +36,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(join("public")));
 
 // route handler
-app.use("/posts", require("./routes/posts"));
-app.use("/login", require("./routes/login"));
+app.use("/posts", posts);
+app.use("/login", login);
 
 app.get("/", (_, res) => res.redirect("/posts"));
 app.get("/error/:code", (req, res) => res.render("error", { code: req.params.code }));
