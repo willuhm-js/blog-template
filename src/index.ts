@@ -10,6 +10,7 @@ import path from "path"
 import { mongoCred } from "./config";
 import posts from "./routes/posts"
 import login from "./routes/login"
+import logger from "./util/logger";
 
 const join = (...p: string[]) => path.resolve(__dirname, ...p);
 const app = express();
@@ -19,7 +20,7 @@ mongoose
   .connect(mongoCred)
   .then(() => {
     app.listen(process.env.PORT || 8082, () => {
-      console.log("App Started");
+      logger.info("App Started");
     });
   });
 

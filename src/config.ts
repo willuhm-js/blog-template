@@ -2,13 +2,14 @@ import crypto from "crypto";
 import fs from "fs/promises";
 import { constants } from "fs";
 import dotenv from "dotenv";
+import logger from "./util/logger";
 dotenv.config();
 
 const exists = (path: string) => fs.access(path, constants.R_OK | constants.W_OK).then(() => true).catch(() => false);
 
 export const jwtSecret = process.env.JWT_SECRET || (async () => {
   // No JWT_SECRET token found. Using crypto, generate a secure string.
-  console.log("You have not set the JWT_SECRET environment variable. Generating a secure one...");
+  logger.warn("You have not set the JWT_SECRET environment variable. Generating a secure one...");
   const randomBits = crypto.randomBytes(32).toString("hex");
 
   const preferredFsFunction = await exists(".env") ? fs.appendFile : fs.writeFile;
@@ -18,7 +19,7 @@ export const jwtSecret = process.env.JWT_SECRET || (async () => {
 })();
 
 export const mongoCred = process.env.MONGO || (() => {
-  console.log("You have not set the MONGO environment variable.");
+  logger.error("You have not set the MONGO environment variable.");
   process.exit(1);
 })();
 
