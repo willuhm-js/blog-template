@@ -25,8 +25,8 @@ export const mongoCred = process.env["MONGO"] || (() => {
 
 export const blogTitle = "My Blog";
 
-export const username = "admin";
+export const username = process.env["USERNAME"] || "admin";
 
-export const password = "admin";
+export const password = process.env["PASSWORD"] || "admin";
 
 export const port = process.env.PORT || 8082;
