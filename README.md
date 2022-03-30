@@ -6,7 +6,7 @@ A modern, light-theme blog that uses MongoDB and Bootstrap styling.
 npx degit https://github.com/willuhm-js/Blog.git Blog
 cd Blog
 # Edit src/config.js
-npm install && npm start
+npm install && npm run build && npm start
 ```
 
 ## Tips for Usage
