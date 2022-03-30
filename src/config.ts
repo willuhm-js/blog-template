@@ -18,7 +18,7 @@ export const jwtSecret = process.env.JWT_SECRET || (async () => {
   return randomBits
 })();
 
-export const mongoCred = process.env.MONGO || (() => {
+export const mongoCred = process.env["MONGO"] || (() => {
   logger.error("You have not set the MONGO environment variable.");
   process.exit(1);
 })();
