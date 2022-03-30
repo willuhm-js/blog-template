@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "start": "tsc && node --experimental-specifier-resolution=node dist/index.js"
+    "build": "tsc && rm -rf dist/views && cp -r src/views dist/views",
+    "start": "node --experimental-specifier-resolution=node dist/index.js"
   },
   "keywords": [
     "blog",
