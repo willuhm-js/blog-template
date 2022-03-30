@@ -4,14 +4,17 @@ import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 import ejs from "ejs";
-import mongoose from "mongoose"
-import cookieParser from "cookie-parser"
-import path from "path"
+import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
+import path from "path";
+import { URL } from "url";
+
 import { mongoCred, port } from "./config";
 import posts from "./routes/posts"
 import login from "./routes/login"
 import logger from "./util/logger";
 
+const __dirname = new URL(".", import.meta.url).pathname;
 const join = (...p: string[]) => path.resolve(__dirname, ...p);
 const app = express();
 
