@@ -15,7 +15,9 @@ export const jwtSecret = process.env.JWT_SECRET || (async () => {
   const preferredFsFunction = await exists(".env") ? fs.appendFile : fs.writeFile;
 
   await preferredFsFunction(".env", `JWT_SECRET=${randomBits}`);
-  return randomBits
+
+  logger.warn("JWT_SECRET has been set, please restart the application.");
+  process.exit(1);
 })();
 
 export const mongoCred = process.env["MONGO"] || (() => {
