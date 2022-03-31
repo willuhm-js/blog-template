@@ -1,21 +1,21 @@
-require("dotenv").config();
-const { Router } = require("express");
-const jwt = require("jsonwebtoken");
-const { username, password, blogTitle, jwtSecret } = require("../config.js");
+import { Router } from "express";
+import jwt from "jsonwebtoken";
+import { username, password, blogTitle, jwtSecret } from "../config";
+import dotenv from "dotenv";
 
+dotenv.config();
 const app = Router();
-module.exports = app;
 
 app.get("/", (req, res) => {
   res.render("login", { blogTitle });
 });
 
-app.post("/", (req, res) => {
+app.post("/", async (req, res) => {
   const aUsername = req.body.username;
   const aPassword = req.body.password;
   if (aUsername === username && aPassword === password) {
     try {
-      const token = jwt.sign({ username, password }, jwtSecret, { expiresIn: "7h" });
+      const token = jwt.sign({ username, password }, await jwtSecret, { expiresIn: "7h" });
       res.cookie("token", token, {
         maxAge: 7 * 60 * 60 * 1000,
         httpOnly: true,
@@ -28,3 +28,5 @@ app.post("/", (req, res) => {
     res.render("login", { blogTitle, error: "Invalid username or password." });
   }
 });
+
+export default app;

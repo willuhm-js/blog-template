@@ -1,4 +1,6 @@
-const { Schema, model } = require("mongoose");
+import mongoose from "mongoose";
+const { Schema, model } = mongoose;
+
 const postSchema = new Schema({
   id: {
     required: true,
@@ -19,4 +21,4 @@ const postSchema = new Schema({
   thumbnail: String
 }, { timestamps: true} );
 
-module.exports = model("Post", postSchema);
+export default model("Post", postSchema);

@@ -1,20 +1,21 @@
-require("dotenv").config();
-const { Router } = require("express");
-const jwt = require("jsonwebtoken");
-const { blogTitle, username, password, jwtSecret } = require("../config.js");
-const Post = require("../util/mongoose/Post");
-const fs = require("fs-extra");
-const join = (...p) => require("path").resolve(__dirname, ...p);
+import dotenv from "dotenv";
+import { Router } from "express";
+import jwt from "jsonwebtoken";
+import { blogTitle, username, password, jwtSecret } from "../config";
+import Post from "../util/mongoose/Post";
+import multer from "multer"
 
-const upload = require("multer")();
+dotenv.config();
+
+const upload = multer();
 
 const app = Router();
-module.exports = app;
+export default app;
 
-const checkIfAuth = (req) => {
+const checkIfAuth = async (req: Express.Request & { cookies: any }) => {
   if (!req.cookies || !req.cookies.token) return false;
-  const creds = jwt.verify(req.cookies.token, jwtSecret);
-  if (creds.username !== username || creds.password !== password) return false;
+  const creds = jwt.verify(req.cookies.token, await jwtSecret);
+  if ((creds as any).username !== username || (creds as any).password !== password) return false;
   return true;
 };
 
@@ -49,7 +50,7 @@ app.post("/autho/create", upload.single("thumbnail"), async (req, res) => {
     title: req.body.title,
     body: req.body.body,
     id: Date.now(),
-    thumbnail: `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`
+    thumbnail: `data:${req.file?.mimetype};base64,${req.file?.buffer.toString("base64")}`
   });
   if (req.body.tags) newPost.tags = req.body.tags.split(",");
   await newPost.save();
