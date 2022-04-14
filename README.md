@@ -6,7 +6,7 @@ A modern, light-theme blog that uses MongoDB and Bootstrap styling.
 
 ## Get Started
 ```bash
-npx degit https://github.com/willuhm-js/Blog.git Blog
+npx degit https://github.com/willuhm-js/blog-template.git Blog
 cd Blog
 # Edit src/config.js
 npm install && npm run build && npm start
@@ -17,7 +17,7 @@ npm install && npm run build && npm start
 * Do not include an image in the first paragraph, use the thumbnail feature instead; thumbnails are rendered directly after the post title and tags.
 
 ## License
-**Blog** is licensed under the [Unlicense License](https://github.com/willuhm-js/Blog/blob/main/LICENSE). Feel free to do whatever with this, it is a template.
+**blog-template** is licensed under the [Unlicense License](https://github.com/willuhm-js/blog-template/blob/main/LICENSE). Feel free to do whatever with this, it is a template.
 
 ## Contributors ✨
 
